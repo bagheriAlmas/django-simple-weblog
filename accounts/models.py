@@ -6,4 +6,4 @@ class CustomUser(models.Model):
     last_name = models.CharField(max_length=20)
     age = models.SmallIntegerField(blank=True)
     phone = models.BigIntegerField(blank=True)
-    avatar = models.ImageField(upload_to='avatars',blank=True)
+    avatar = models.ImageField(upload_to='avatars', blank=True)
