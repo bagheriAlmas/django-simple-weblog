@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
-<body>
+<body style="background: #f1f6ff ;">
 
 <section class="mt-5">
     <div class="container">
@@ -58,7 +58,7 @@
             <div class="container">
                 {% if user.is_authenticated %}
                     {% if user.avatar == '' %}
-                        <img class="navbar-brand rounded-circle" style="width: 48px" src="../media/default.png"
+                        <img class="navbar-brand rounded-circle" style="width: 48px" src="{% static 'default.png' %}"
                              alt="Default"/>
                     {% else %}
                         <img class="navbar-brand rounded-circle" style="width: 48px" src="{{ user.avatar.url }}"
@@ -92,23 +92,30 @@
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="{% url 'article_create' %}" class="nav-link">+Articles</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
 
                     </ul>
                 </div>
             </div>
         </nav>
-<div class="rounded" style="width: 100% ; background: #f1f6ff ; position: relative; margin-top: 1%">
+        <div class="rounded" style="width: 100% ;  position: relative; margin-top: 1%">
             {% block content %}{% endblock %}
 
-</div>
+        </div>
         <!-- END nav -->
 
     </div>
 
 
 </section>
+<div style="height: 50px">
+
+</div>
+<footer class="py-1 bg-dark"  style="position: fixed; bottom: 0 ; left: 0 ;width: 100%">
+    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+</footer>
+
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/popper.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>

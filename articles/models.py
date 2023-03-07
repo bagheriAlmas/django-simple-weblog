@@ -9,5 +9,5 @@ class Article(models.Model):
     time = models.TimeField(auto_now_add=True)
     published = models.BooleanField(default=True)
     thumbnail = models.ImageField(blank=True, upload_to='images/%y/%m/%d/thumbnails', null=True)
-    image = models.ImageField(blank=True, upload_to='images/%y/%m/%d/', null=True)
+    image = models.ImageField(blank=True, upload_to='images/%y/%m/%d/', null=True, default='default.png')
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)

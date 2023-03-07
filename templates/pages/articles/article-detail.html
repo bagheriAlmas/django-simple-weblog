@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ object }}
+{% endblock %}
+
+
+{% block content %}
+    <div style=" margin: 30px">
+        <table>
+            <tr>
+                <th>ID</th>
+                <td>{{ object.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ object.title }}</td>
+            </tr>
+            <tr>
+                <th>Body</th>
+                <td>{{ object.body }}</td>
+            </tr>
+
+            <tr>
+                <th>Date</th>
+                <td>{{ object.date }}</td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <td>{{ object.time }}</td>
+            </tr>
+            <tr>
+                <th>Thumbnail</th>
+                <td>{{ object.thumbnail }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ object.image }}</td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td>{{ object.author }}</td>
+            </tr>
+
+
+        </table>
+
+        {% if article.author == request.user %}
+            <div style="margin-top: 20px">
+                <a class="btn btn-warning"
+                   href="{% url 'article_update' object.id %}">Update</a>
+                <a class="btn btn-danger"
+                   href="{% url 'article_delete' object.id %}">Delete</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

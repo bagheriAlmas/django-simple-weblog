@@ -23,7 +23,8 @@ from simpleweblog import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
-    path('', include('accounts.urls'))
+    # path('', TemplateView.as_view(template_name='pages/home.html'), name='home'),
+    path('', include('accounts.urls')),
+    path('',include('articles.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
