@@ -1,14 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
     Delete Article
 {% endblock %}
 
 {% block content %}
-    <form action="" method="POST"
-          style="width: 30% ; padding: 30px">
-    <p>Are You Sure Delete {{ object }} ? </p>
+    <div style="width: 50%;transform: translate(50%, 0%); padding: 50px 0 50px 0">
+        <div style="width: 100% ; display: flex;justify-content: center;align-items: center">
+            <img src="{% static 'icons/delete_article.png' %}" style="width: 64px" alt="">
+        </div>
+            <form action="" method="POST">
+    <p style="margin-top: 30px">Are You Sure Delete {{ object }} ? </p>
     {% csrf_token %}
-    <button class="btn btn-danger" type="submit"
-            style="margin-top: 30px" >Delete</button>
+    <button class="btn btn-danger" type="submit" style="margin-top: 30px" >Delete</button>
+    <a class="btn btn-outline-danger" type="button" href="../" style="margin-top: 30px" >Cancle</a>
     </form>
+    </div>
 {% endblock %}
+
+

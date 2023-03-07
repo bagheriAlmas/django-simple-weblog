@@ -1,56 +1,106 @@
 {% extends 'base.html' %}
-{% block title %}
-    {{ object }}
-{% endblock %}
-
+{% load static %}
+{% block title %}Update {{ object }}{% endblock %}
+{% block header %}Update {{ object }}{% endblock %}
 
 {% block content %}
-    <div style=" margin: 30px">
-        <table>
-            <tr>
-                <th>ID</th>
-                <td>{{ object.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ object.title }}</td>
-            </tr>
-            <tr>
-                <th>Body</th>
-                <td>{{ object.body }}</td>
-            </tr>
+    <!-- Page content-->
+    <div class="container">
+        <div class="row">
+            <!-- Blog entries-->
+            <div class="col-lg-8">
+                <!-- Featured blog post-->
+                <div class="card mb-4">
+                    {% if object.image %}
+                        <a href="#"><img class="card-img-top" src="{{ object.image.url }}" alt="..."/></a>
+                    {% else %}
+                        <div style="position: center ; text-align: center">
+                            <img height="256" width="256" src="{% static 'icons/no-pictures.png' %}" alt="..."/>
+                            Article Has No Images
+                        </div>
 
-            <tr>
-                <th>Date</th>
-                <td>{{ object.date }}</td>
-            </tr>
-            <tr>
-                <th>Time</th>
-                <td>{{ object.time }}</td>
-            </tr>
-            <tr>
-                <th>Thumbnail</th>
-                <td>{{ object.thumbnail }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ object.image }}</td>
-            </tr>
-            <tr>
-                <th>Author</th>
-                <td>{{ object.author }}</td>
-            </tr>
+                    {% endif %}
+                    <div class="card-body">
+                        <div class="small text-muted">{{ object.date }}</div>
+                        <h2 class="card-title">{{ object.title }}</h2>
+                        <p class="card-text">{{ object.body }}</p>
+                        <a class="btn btn-outline-danger" href="#">Like</a>
+                        <a class="btn btn-outline-success" href="#">Favorite</a>
+                    </div>
+                </div>
+                <!-- Nested row for non-featured blog posts-->
 
-
-        </table>
-
-        {% if article.author == request.user %}
-            <div style="margin-top: 20px">
-                <a class="btn btn-warning"
-                   href="{% url 'article_update' object.id %}">Update</a>
-                <a class="btn btn-danger"
-                   href="{% url 'article_delete' object.id %}">Delete</a>
             </div>
-        {% endif %}
+            <!-- Side widgets-->
+            <div class="col-lg-4">
+
+                <!-- Side widget-->
+                <div class="card mb-4">
+                    <div class="card-header">About Author</div>
+                    <div class="card-body">
+                        <table>
+                            <tr>
+                                <td><img src="{{ article.author.avatar.url }}" style="width: 48px" alt=""></td>
+                                <td>{{ article.author.first_name }} {{ article.author.last_name }}</td>
+                            </tr>
+                        </table>
+                        <p>i am developer , i love Technology</p>
+                    </div>
+                    <a style="margin: 20px" href="#" class="btn btn-primary">Follow</a>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
+
+
+{#{% block content %}#}
+{#    <div style=" margin: 30px">#}
+{#        <table>#}
+{#            <tr>#}
+{#                <th>ID</th>#}
+{#                <td>{{ object.id }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Title</th>#}
+{#                <td>{{ object.title }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Body</th>#}
+{#                <td>{{ object.body }}</td>#}
+{#            </tr>#}
+{##}
+{#            <tr>#}
+{#                <th>Date</th>#}
+{#                <td>{{ object.date }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Time</th>#}
+{#                <td>{{ object.time }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Thumbnail</th>#}
+{#                <td>{{ object.thumbnail }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Image</th>#}
+{#                <td>{{ object.image }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <th>Author</th>#}
+{#                <td>{{ object.author }}</td>#}
+{#            </tr>#}
+{##}
+{##}
+{#        </table>#}
+{##}
+{#        {% if article.author == request.user %}#}
+{#            <div style="margin-top: 20px">#}
+{#                <a class="btn btn-warning"#}
+{#                   href="{% url 'article_update' object.id %}">Update</a>#}
+{#                <a class="btn btn-danger"#}
+{#                   href="{% url 'article_delete' object.id %}">Delete</a>#}
+{#            </div>#}
+{#        {% endif %}#}
+{#    </div>#}
+{#{% endblock %}#}
