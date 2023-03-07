@@ -57,13 +57,19 @@
         <nav class="navbar navbar-expand-lg ftco_navbar ftco-navbar-light" id="ftco-navbar">
             <div class="container">
                 {% if user.is_authenticated %}
-                    <img class="navbar-brand rounded-circle" style="width: 48px" src="{{ user.avatar.url }}" alt="{{ user.avatar.url }}"/>
+                    {% if user.avatar == '' %}
+                        <img class="navbar-brand rounded-circle" style="width: 48px" src="../media/default.png"
+                             alt="Default"/>
+                    {% else %}
+                        <img class="navbar-brand rounded-circle" style="width: 48px" src="{{ user.avatar.url }}"
+                             alt="{{ user.avatar.url }}"/>
+                    {% endif %}
                     <a class=" dropdown-toggle navbar-brand" href="#" id="dropdown04" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">{{ user.username }}</a>
                     <div class="dropdown-menu p-1 bg-dark" aria-labelledby="dropdown04">
                         <div class="row ">
                             <div class="col-md-12">
-                                <a class="dropdown-item text-light" href="#">Profile</a>
+                                <a class="dropdown-item text-light" href="{% url 'update' %}">Profile</a>
                                 <a class="dropdown-item text-light" href="#">Wish List</a>
                                 <a class="dropdown-item text-light" href="#">Likes</a>
                                 <a class="dropdown-item text-light" href="{% url 'logout' %}">Logout</a>
@@ -72,7 +78,7 @@
                     </div>
                 {% else %}
                     <a class="  navbar-brand" href="{% url 'login' %}">Login</a>
-                    <a class="  navbar-brand" href="#">Register</a>
+                    <a class="  navbar-brand" href="{% url 'register' %}">Register</a>
 
 
 
@@ -85,7 +91,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="ftco-nav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">About</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
 
@@ -95,7 +101,9 @@
         </nav>
         {% block content %}{% endblock %}
         <!-- END nav -->
+
     </div>
+
 
 </section>
 <script src="{% static 'js/jquery.min.js' %}"></script>

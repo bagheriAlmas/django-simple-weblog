@@ -7,10 +7,16 @@
 {% block header %}Login Page{% endblock %}
 
 {% block content %}
-    <form method="POST" action="">
-        {% csrf_token %}
-        {#        {{ form |crispy }}#}
-        {% bootstrap_form form %}
-        <button class="btn btn-primary" type="submit">Login</button>
-    </form>
+
+    <div style=" background-color: #0f6674 ; position: relative; margin-top: 5%">
+        <div style="width: 30%;position: absolute;transform: translate(120%, 0%);">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <button class="btn btn-primary " type="submit" style="width: 100%">Login</button><br>
+                <button class="btn btn-outline-info " type="submit" style="width: 100% ; margin-top: 10px">Forget Password</button>
+            </form>
+        </div>
+    </div>
+
 {% endblock %}

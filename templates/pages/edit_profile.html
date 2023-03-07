@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+    <h2>Edit Profile</h2>
+    <div style="text-align: center; ">
+        {% if user.avatar == '' %}
+            <img class="navbar-brand rounded-circle" style="width: 48px" src="../../media/default.png"
+                 alt="Default"/>
+        {% else %}
+            <img class="rounded-circle" style="width: 128pt" src="{{ user.avatar.url }}" alt="">
+
+        {% endif %}
+    </div>
+    <div style=" background-color: #0f6674 ; position: relative;">
+        <div style="width: 70%;position: absolute;transform: translate(25%, 0%);">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
