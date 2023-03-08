@@ -22,12 +22,13 @@ from .models import CustomUser
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'first_name', 'last_name', 'avatar','about_me')
+        fields = ('username', 'email', 'first_name', 'last_name', 'about_me', 'avatar')
         exclude = ('password',)
-
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'first_name', 'last_name', 'avatar','about_me')
+        fields = ('username', 'email', 'first_name', 'last_name', 'about_me', 'avatar')
         exclude = ('password',)
+
+
